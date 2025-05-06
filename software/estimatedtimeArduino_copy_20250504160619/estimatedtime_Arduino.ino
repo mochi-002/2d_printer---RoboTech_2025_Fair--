@@ -9,7 +9,7 @@ unsigned long totalSeconds = 0;
 bool timerRunning = false;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   lcd.init();
   lcd.backlight();
 
@@ -21,6 +21,7 @@ void loop() {
   // Check for new data
   while (Serial.available()) {
     incomingLine = Serial.readStringUntil('\n');
+    Serial.println(incomingLine);
     processLine(incomingLine);
   }
 

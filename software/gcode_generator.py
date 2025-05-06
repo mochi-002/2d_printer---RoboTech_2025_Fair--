@@ -21,7 +21,7 @@ class PencilPlotterGenerator:
             'z_lift_position': 1.0,  # mm (1 = pen up)
             'z_clearance': 1.0,  # mm
             'z_speed': 200,  # mm/min
-            'z_change_delay': 1.5,  # seconds
+            'z_change_delay': 0,  # seconds
 
             # Image Processing
             'image_size': (30, 25),  # mm

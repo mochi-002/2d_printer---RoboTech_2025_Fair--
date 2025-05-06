@@ -2,7 +2,6 @@ import math
 import re
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
-import websocket_file as wbs
 
 @dataclass
 class GCodeState:
@@ -207,8 +206,7 @@ def main():
             print(f"Estimated time: {time_convert(total_time)}")
             print(f"Total distance: {parser.total_distance:.2f} mm")
             print(f"Lines processed: {len(gcode.splitlines())}")
-            
-            wbs.sendTime(time_convert(total_time))
+
             
             
         except FileNotFoundError:
