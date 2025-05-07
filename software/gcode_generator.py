@@ -24,7 +24,7 @@ class PencilPlotterGenerator:
             'z_change_delay': 0,  # seconds
 
             # Image Processing
-            'image_size': (30, 25),  # mm
+            'image_size': (40, 35),  # mm
             'dpi': 1200,
             'contrast': 1.8,
             'min_feature_size': 0.1,  # mm (more details)
