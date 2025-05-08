@@ -6,6 +6,9 @@
 
 A custom 2D printer system that converts digital images to physical prints via SVG-to-Gcode conversion. Developed for the RoboTech 2025 Fair, this project includes complete hardware designs, firmware, and conversion software.
 
+## 📚 Documentation
+For detailed guides and tutorials, visit the [Project Wiki](https://github.com/mochi-002/RoboTech2025-PenPlotter/wiki).
+
 ## 📂 Repository Structure
 
 ```
@@ -109,3 +112,4 @@ Hardware designs licensed under MIT License. Software designed by mochi.
 - **Project Maintainer:** [mochi-002]
 - **Email:** mohamed.002.mochi@gmail.com
 - **Project Link:** https://github.com/mochi-002/2d_printer---RoboTech_2025_Fair--.git
+- **Wiki Documentation:** https://github.com/mochi-002/RoboTech2025-PenPlotter/wiki
