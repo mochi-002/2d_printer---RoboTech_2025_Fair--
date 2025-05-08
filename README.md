@@ -103,9 +103,24 @@ We welcome contributions! Please:
 4. Push to the branch (`git push origin feature/improvement`)
 5. Open a Pull Request
 
-## 📜 License
+## 📜 License (MIT)
 
-Hardware designs licensed under MIT License. Software designed by mochi.
+### Permissions
+✅ **Commercial use** - Can be used in paid products  
+✅ **Modification** - Code can be changed and adapted  
+✅ **Distribution** - Can be copied and shared  
+✅ **Private use** - Can be used in private projects  
+
+### Limitations
+⚠️ **Liability** - Author is not responsible for damages  
+🛡️ **Warranty** - Software provided "as is" with no guarantees  
+
+### Requirements
+📌 **Must include**: Original copyright notice
+
+[View Full License Text](/LICENSE)
+
+
 
 ## 📧 Contact
 
