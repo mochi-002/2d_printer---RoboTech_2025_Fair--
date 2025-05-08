@@ -1,6 +1,6 @@
 # 2D Printer - RoboTech 2025 Fair
 
-![Project Banner](2d_printer---RoboTech_2025_Fair--/pictures/images/banner.jpg) 
+![Project Banner](pictures/images/banner.jpg) 
 
 ## 📌 Project Overview
 
@@ -10,40 +10,45 @@ A custom 2D printer system that converts digital images to physical prints via S
 
 ```
 /2d_printer---RoboTech_2025_Fair--
-├── /gcode_settings/ # JSCut settings
+├── /gcode_settings/ # JSCut configuration profiles
 ├── /hardware/ # Mechanical designs
-│   ├── /3d_models/ # Printable STL files
-│   ├── /connections/ # Electronics wiring diagrams
-│   └── description.txt # Assembly guide
+│ └── /3d_models/ # Printable STL files
 ├── /pictures/ # Image resources
-│   ├── /converted_photos_to_svg/ # SVG outputs
-│   ├── /images/ # Reference images
-│   └── /photos_to_test_on/ # Sample input images
+│ ├── /converted_photos_to_svg/ # SVG outputs
+│ ├── /images/ # Reference images
+│ └── /photos_to_test_on/ # Sample input images
 ├── /printer_tests/ # Calibration files
-│   └── /most_accurate_gcodes/ # Optimized print files
-└── /software/ # Control system
-    ├── /arduino_grbl_code/ # Motion controller
-    ├── /esp_task/ # ESP32 modules
-    ├── /estimatedtime/ # Runtime predictor
-    └── /utlis/ # Conversion tools
+│ └── /most_accurate_gcodes/ # Optimized print files
+├── /software/ # Control system
+│ ├── /arduino_grbl_code/ # Motion controller
+│ ├── /esp_task/ # ESP32 modules
+│ ├── /estimatedtime/ # Runtime predictor
+│ └── /utlis/ # Conversion tools
+├── requirements.txt # Python dependencies
+└── arduino_requirements.txt # Arduino library dependencies
 ```
-
 ## 🛠️ Setup Guide
 
 ### Prerequisites
 - Python 3.8+
-- Arduino IDE
+- Arduino IDE 2.x
 - GRBL-compatible CNC shield
 
+### Python Dependencies
 ```bash
-# Install Python dependencies
+# Install Python packages
 pip install -r requirements.txt
 ```
 
+### arduino libilaries
+- LiquidCrystal_I2C
+- ESP8266WiFi
+- WebSocketsServer
+- grbl
+
+
 ### Hardware Assembly
 1. Print all components from `hardware/3d_models`
-2. Follow wiring diagrams in `hardware/connections`
-3. Refer to `hardware/description.txt` for mechanical assembly
 
 ### Software Installation
 1. Upload `arduino_grbl_code.ino` to your controller
@@ -57,12 +62,12 @@ pip install -r requirements.txt
 Input Image → SVG Conversion by "picsvg.com" → resize svg by "inkscape" → G-code Generation by "jscut.org" → send gcode_file to arduino by "open builds" (case using the long way)
 ```
 ```
-Input Image → Run gcode_generator.py → send gcode_file to arduino by "open builds" (case using the short way "mochi`s way")
+Input Image → Run gcode_generator.py → send gcode_file to arduino by "open builds" (case using the short way "mochi`s Method")
 ```
 
 ### Image Conversion:
 ```bash
-python software/utlis/image_to_svg_converter.py -i pictures/photos_to_test_on/my_image.jpg 
+python software/utlis/image_to_svg_converter.py -i pictures/photos_to_test_on/my_image.jpg
 ```
 
 ### G-code Generation:
@@ -101,6 +106,6 @@ Hardware designs licensed under MIT License. Software designed by mochi.
 
 ## 📧 Contact
 
-- **Project Maintainer:** mochi-002
+- **Project Maintainer:** [mochi-002]
 - **Email:** mohamed.002.mochi@gmail.com
 - **Project Link:** https://github.com/mochi-002/2d_printer---RoboTech_2025_Fair--.git
