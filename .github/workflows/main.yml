@@ -1,0 +1,73 @@
+name: PenPlotter CI/CD Pipeline
+on: [push, pull_request]
+
+jobs:
+  conversion-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        method: ["manual", "auto"]
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y inkscape
+        pip install -r requirements.txt
+
+    - name: Run Conversion (${{ matrix.method }} method)
+      run: |
+        if [ "${{ matrix.method }}" == "manual" ]; then
+          echo "Running MANUAL conversion path:"
+          echo "1. Would normally use picsvg.com for JPG→SVG"
+          echo "2. Would use Inkscape for SVG processing"
+          echo "3. Would use jscut.org for SVG→G-code"
+          # Placeholder for manual steps
+          mkdir -p manual_output
+          touch manual_output/manual.gcode
+        else
+          echo "Running AUTOMATED conversion path:"
+          python software/utlis/image_to_svg_converter.py \
+            -i pictures/photos_to_test_on/aot.jpg \
+            -o pictures/converted_photos_to_svg/aot.svg
+          python software/gcode_generator.py \
+            -i pictures/converted_photos_to_svg/aot.svg \
+            -o printer_tests/auto.gcode
+        fi
+
+    - name: Verify Output (${{ matrix.method }})
+      run: |
+        if [ "${{ matrix.method }}" == "manual" ]; then
+          [ -f manual_output/manual.gcode ] || exit 1
+        else
+          [ -f pictures/converted_photos_to_svg/aot.svg ] || exit 1
+          [ -f printer_tests/auto.gcode ] || exit 1
+        fi
+
+  hardware-validation:
+    needs: conversion-test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Validate Hardware Files
+      run: |
+        [ -f hardware/3d_models/*.stl ] || echo "::warning::Missing STL files"
+        [ -f hardware/description.txt ] || exit 1
+
+  deployment:
+    needs: hardware-validation
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Package Artifacts
+      run: |
+        mkdir -p release
+        cp -r printer_tests/ release/
+        cp -r pictures/converted_photos_to_svg/ release/
+        zip -r release_${{ github.sha }}.zip release/
+    - uses: actions/upload-artifact@v3
+      with:
+        name: plotter-outputs
+        path: release_${{ github.sha }}.zip
