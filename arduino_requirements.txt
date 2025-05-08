@@ -1,0 +1,4 @@
+LiquidCrystal_I2C
+ESP8266WiFi@2.7.4
+WebSocketsServer@2.3.6
+grbl@1.1f
